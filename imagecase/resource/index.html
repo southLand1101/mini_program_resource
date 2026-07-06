@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+  <title>修图风格 · 艺术力场</title>
+  <style>
+    /* 全局重置 & 艺术基调 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0a0c;
+      background-image: radial-gradient(circle at 20% 30%, #1e1a1f 0%, #0b0a0c 90%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      padding: 20px 12px;
+      color: #f0ede8;
+      letter-spacing: 0.01em;
+    }
+
+    .app {
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* 头部 — 诗意留白 */
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 240, 220, 0.12);
+    }
+
+    .header h1 {
+      font-size: 26px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      color: #f2e7da;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      background: linear-gradient(135deg, #f2e7da 30%, #b7a99a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header .sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: #a79b8e;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-top: 2px;
+    }
+
+    /* 风格卡片网格 — 极简画廊 */
+    .style-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .style-card {
+      background: rgba(20, 18, 20, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 36px 16px 36px 16px;
+      padding: 18px 16px 16px 16px;
+      border: 1px solid rgba(230, 210, 190, 0.08);
+      box-shadow: 0 20px 40px -16px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255, 235, 210, 0.02);
+      transition: all 0.25s ease;
+    }
+
+    .style-card:active {
+      transform: scale(0.98);
+      background: rgba(30, 26, 28, 0.8);
+    }
+
+    /* 图片容器 — 艺术化占位 */
+    .image-area {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #131012;
+      border-radius: 24px 8px 24px 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(200, 180, 160, 0.06);
+      box-shadow: inset 0 8px 20px rgba(0,0,0,0.8);
+      position: relative;
+    }
+
+    .image-area img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.92;
+      transition: opacity 0.3s;
+      filter: contrast(1.02) saturate(1.1);
+    }
+
+    /* 风格标签 + 思路描述 */
+    .style-meta {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .style-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .style-name {
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      color: #ede6dd;
+      background: linear-gradient(145deg, #f0e4d6, #d6c8b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .style-tag {
+      font-size: 11px;
+      background: rgba(210, 190, 170, 0.12);
+      padding: 4px 14px;
+      border-radius: 40px;
+      letter-spacing: 1px;
+      color: #cbbeb0;
+      border: 0.5px solid rgba(200, 180, 165, 0.15);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+
+    .style-desc {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.5;
+      color: #cfc3b6;
+      margin-top: 6px;
+      padding-right: 6px;
+      letter-spacing: 0.02em;
+      border-left: 2px solid rgba(200, 175, 155, 0.25);
+      padding-left: 12px;
+      background: rgba(0,0,0,0.15);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .style-desc i {
+      font-style: normal;
+      background: rgba(230, 200, 170, 0.05);
+      padding: 0 4px;
+    }
+
+    /* 力度调节滑杆 — “真实/美貌” 艺术滑块 */
+    .intensity-section {
+      margin-top: 12px;
+      background: rgba(12, 10, 12, 0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 80px;
+      padding: 14px 18px;
+      border: 1px solid rgba(210, 190, 170, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .intensity-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 300;
+      color: #b7a89b;
+      letter-spacing: 0.5px;
+      padding: 0 2px;
+    }
+
+    .intensity-labels span:first-child {
+      color: #b8aa9a;
+      opacity: 0.9;
+    }
+    .intensity-labels span:last-child {
+      color: #e6d7c4;
+      opacity: 0.9;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #6b5d4e, #cbb49c);
+      border-radius: 10px;
+      outline: none;
+      margin: 6px 0 2px;
+      transition: opacity 0.2s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #efe3d4, #b7a088);
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(200, 170, 140, 0.3), 0 2px 8px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255, 235, 210, 0.25);
+      transition: 0.1s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:active {
+      transform: scale(1.12);
+      background: radial-gradient(circle at 30% 30%, #f5eadc, #cbb39b);
+      box-shadow: 0 0 30px #c9b09b50;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #efe3d4, #b7a088);
+      border: 1px solid rgba(255, 235, 210, 0.25);
+      cursor: pointer;
+    }
+
+    .intensity-value {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 300;
+      color: #d6c6b6;
+      letter-spacing: 2px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 40px;
+      padding: 4px 0;
+      margin-top: 4px;
+      border: 0.5px solid rgba(200, 175, 155, 0.05);
+    }
+
+    .intensity-value strong {
+      font-weight: 400;
+      color: #f0dfce;
+      background: linear-gradient(145deg, #f0dfce, #d6c2ae);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* 脚注 – 极简签名 */
+    .footer-note {
+      margin-top: 14px;
+      font-size: 11px;
+      text-align: center;
+      color: #5b5046;
+      letter-spacing: 2px;
+      border-top: 0.5px solid rgba(255, 215, 180, 0.04);
+      padding-top: 18px;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    /* 微交互: 卡片悬浮 艺术感 */
+    @media (hover: hover) {
+      .style-card:hover {
+        background: rgba(28, 24, 28, 0.75);
+        border-color: rgba(220, 195, 170, 0.12);
+        box-shadow: 0 24px 48px -20px #000000cc;
+      }
+    }
+
+    /* 辅助布局 */
+    .spacer {
+      height: 2px;
+    }
+
+    /* 字体后备 */
+    @supports (font-variation-settings: normal) {
+      body { font-family: 'InterVariable', sans-serif; }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <h1>◈ 修图 · 力场</h1>
+    <div class="sub">风格演化 · 真实与美学的共振</div>
+  </div>
+
+  <div class="style-grid">
+    <!-- 卡片 1: 胶片 -->
+    <div class="style-card" id="card-film">
+      <div class="image-area">
+        <img src="/resource/logo.png" alt="胶片风格预览" />
+      </div>
+      <div class="style-meta">
+        <div class="style-title">
+          <span class="style-name">胶片 · 颗粒</span>
+          <span class="style-tag">🎞️ 怀旧</span>
+        </div>
+        <div class="style-desc">
+          <i>褪色感 · 暗角 · 颗粒</i> —— 模仿银盐质感，高光柔和，阴影带青，让画面诉说时间的故事。
+        </div>
+      </div>
+      <!-- 力度滑块 (每个卡片独立) -->
+      <div class="intensity-section">
+        <div class="intensity-labels">
+          <span>◈ 真实</span>
+          <span>美貌 ◈</span>
+        </div>
+        <input type="range" min="0" max="10" value="5" class="slider" data-style="film" />
+        <div class="intensity-value">
+          <span>力度 · </span><strong id="val-film">平衡</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- 卡片 2: 通透 -->
+    <div class="style-card" id="card-clear">
+      <div class="image-area">
+        <img src="/resource/logo.png" alt="通透风格预览" />
+      </div>
+      <div class="style-meta">
+        <div class="style-title">
+          <span class="style-name">通透 · 空气</span>
+          <span class="style-tag">🌿 清冽</span>
+        </div>
+        <div class="style-desc">
+          <i>去雾 · 明净 · 微反差</i> —— 提升中间调，蓝色更澄澈，肤色透亮，如清晨薄雾散尽。
+        </div>
+      </div>
+      <div class="intensity-section">
+        <div class="intensity-labels">
+          <span>◈ 真实</span>
+          <span>美貌 ◈</span>
+        </div>
+        <input type="range" min="0" max="10" value="6" class="slider" data-style="clear" />
+        <div class="intensity-value">
+          <span>力度 · </span><strong id="val-clear">自然透亮</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- 卡片 3: 高饱和 -->
+    <div class="style-card" id="card-vivid">
+      <div class="image-area">
+        <img src="./logo.png" alt="高饱和风格预览" />
+      </div>
+      <div class="style-meta">
+        <div class="style-title">
+          <span class="style-name">高饱和 · 活力</span>
+          <span class="style-tag">🌈 张扬</span>
+        </div>
+        <div class="style-desc">
+          <i>色彩溢出 · 生动 · 能量</i> —— 强化原色，红绿蓝碰撞，画面充满生命力，适合表达热烈情绪。
+        </div>
+      </div>
+      <div class="intensity-section">
+        <div class="intensity-labels">
+          <span>◈ 真实</span>
+          <span>美貌 ◈</span>
+        </div>
+        <input type="range" min="0" max="10" value="7" class="slider" data-style="vivid" />
+        <div class="intensity-value">
+          <span>力度 · </span><strong id="val-vivid">鲜明</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">✦ 滑动调节 · 真实与美学的光谱 ✦</div>
+</div>
+
+<script>
+  (function() {
+    // 获取所有滑块和对应的显示元素
+    const sliders = document.querySelectorAll('.slider');
+    // 力度文本映射
+    const intensityMap = {
+      film: {
+        0: '极致真实',
+        1: '真实优先',
+        2: '微怀旧',
+        3: '颗粒平衡',
+        4: '质感均衡',
+        5: '平衡',
+        6: '柔美倾向',
+        7: '美貌增强',
+        8: '优雅润色',
+        9: '梦幻修饰',
+        10: '极致美貌'
+      },
+      clear: {
+        0: '纯粹真实',
+        1: '自然去雾',
+        2: '清透微调',
+        3: '明净感',
+        4: '空气感',
+        5: '自然透亮',
+        6: '通透光泽',
+        7: '澄澈美貌',
+        8: '水光肌',
+        9: '流光质感',
+        10: '极致通透'
+      },
+      vivid: {
+        0: '素色真实',
+        1: '低调饱和',
+        2: '活力初显',
+        3: '色彩增强',
+        4: '饱满生动',
+        5: '鲜明',
+        6: '浓烈',
+        7: '热情洋溢',
+        8: '炫彩',
+        9: '极彩',
+        10: '视觉冲击'
+      }
+    };
+
+    // 更新滑块值显示
+    function updateSliderValue(slider) {
+      const style = slider.dataset.style; // film, clear, vivid
+      const val = parseInt(slider.value, 10);
+      const displayId = `val-${style}`;
+      const displayEl = document.getElementById(displayId);
+      if (!displayEl) return;
+
+      // 从映射获取描述，若没有则使用 fallback
+      const map = intensityMap[style];
+      let label = map && map[val] ? map[val] : `力度 ${val}`;
+      displayEl.textContent = label;
+    }
+
+    // 初始化所有滑块
+    sliders.forEach(slider => {
+      // 初始更新
+      updateSliderValue(slider);
+
+      // 监听 input 事件（实时）
+      slider.addEventListener('input', function(e) {
+        updateSliderValue(this);
+        // 附加微交互：卡片呼吸效果（可选）
+        const card = this.closest('.style-card');
+        if (card) {
+          card.style.transition = 'box-shadow 0.1s';
+          card.style.boxShadow = '0 0 30px rgba(200, 170, 140, 0.15), 0 20px 40px -16px #000000';
+          setTimeout(() => {
+            card.style.boxShadow = '';
+          }, 200);
+        }
+      });
+
+      // 额外：鼠标松开时重置阴影
+      slider.addEventListener('change', function() {
+        const card = this.closest('.style-card');
+        if (card) {
+          card.style.boxShadow = '';
+        }
+      });
+    });
+
+    // 额外：点击卡片可聚焦到滑块（提升可用性）
+    document.querySelectorAll('.style-card').forEach(card => {
+      const slider = card.querySelector('.slider');
+      if (slider) {
+        card.addEventListener('click', function(e) {
+          // 防止点到内部链接或滑块本身触发两次
+          if (e.target.tagName === 'INPUT') return;
+          slider.focus();
+          // 模拟视觉反馈
+          slider.style.outline = '1px solid rgba(210, 180, 150, 0.3)';
+          setTimeout(() => { slider.style.outline = ''; }, 600);
+        });
+      }
+    });
+
+    // 处理图片加载（如果 /resource/logo.png 无法加载，不影响展示）
+    const imgs = document.querySelectorAll('.image-area img');
+    imgs.forEach(img => {
+      img.addEventListener('error', function() {
+        // 如果图片加载失败，保留占位样式——但依旧展示文字或logo占位
+        this.style.opacity = '0.6';
+        this.alt = '风格预览';
+        // 可以添加一个简单的fallback 背景色
+        this.style.background = '#1f1b1e';
+      });
+    });
+
+    console.log('✨ 修图风格力场已激活 · 滑动感受真实与美貌的平衡');
+  })();
+</script>
+</body>
+</html>
