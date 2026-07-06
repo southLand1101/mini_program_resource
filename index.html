@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>个人介绍 · 简洁卡片</title>
+  <!-- 使用干净柔和的风格，纯CSS，无外部库 -->
+  <style>
+    /* ----- 全局重置 & 字体 ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f6f9fc 0%, #e9f0f5 100%);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      margin: 0;
+      line-height: 1.5;
+      color: #1e2b37;
+    }
+
+    /* ----- 主卡片容器 ----- */
+    .profile-card {
+      max-width: 820px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 20px 40px -12px rgba(0, 20, 30, 0.25),
+                  0 8px 24px -6px rgba(0, 0, 0, 0.05);
+      border-radius: 48px;
+      padding: 2.5rem 2.2rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    /* ----- 头部：头像 + 姓名标题 ----- */
+    .profile-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.8rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .avatar {
+      flex-shrink: 0;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b7f9e, #1f4b63);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.4rem;
+      font-weight: 400;
+      color: white;
+      box-shadow: 0 8px 20px rgba(30, 60, 80, 0.2);
+      transition: transform 0.3s ease;
+      border: 3px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .avatar:hover {
+      transform: scale(1.02) rotate(2deg);
+    }
+
+    .title-group {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .title-group h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0f293b;
+      margin-bottom: 0.2rem;
+      line-height: 1.2;
+    }
+
+    .title-group .tagline {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #2a4c62;
+      background: rgba(60, 120, 150, 0.08);
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* ----- 简介段落 ----- */
+    .bio {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      padding: 1.4rem 1.8rem;
+      border-radius: 32px;
+      margin-bottom: 2.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.6);
+      font-size: 1.05rem;
+      color: #1b3648;
+      transition: background 0.2s;
+    }
+
+    .bio p {
+      margin: 0;
+    }
+
+    .bio strong {
+      color: #0f3b52;
+      font-weight: 600;
+    }
+
+    /* ----- 网格：技能 & 项目（两列自适应） ----- */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.2rem;
+    }
+
+    @media (max-width: 580px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .profile-card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 32px;
+      }
+      .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.8rem;
+      }
+      .title-group h1 {
+        font-size: 2rem;
+      }
+      .avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 3rem;
+      }
+    }
+
+    /* ----- 卡片模块 (技能 & 项目) ----- */
+    .info-module {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 28px;
+      padding: 1.6rem 1.6rem 1.8rem;
+      box-shadow: 0 6px 18px rgba(0, 20, 30, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      transition: all 0.2s ease;
+    }
+
+    .info-module:hover {
+      background: rgba(255, 255, 255, 0.7);
+      border-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 12px 28px rgba(30, 60, 80, 0.08);
+    }
+
+    .info-module h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #1d4057;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 2px solid rgba(80, 130, 170, 0.15);
+      padding-bottom: 0.6rem;
+    }
+
+    /* 技能标签 */
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 0.7rem;
+    }
+
+    .skill-tag {
+      background: rgba(40, 80, 110, 0.08);
+      padding: 0.35rem 1.1rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1b4057;
+      border: 1px solid rgba(60, 120, 160, 0.15);
+      backdrop-filter: blur(4px);
+      transition: all 0.15s;
+      letter-spacing: 0.01em;
+    }
+
+    .skill-tag:hover {
+      background: rgba(40, 100, 140, 0.12);
+      border-color: #3f88b0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 40, 60, 0.05);
+    }
+
+    /* 项目列表 */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .project-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem 0.8rem;
+      flex-wrap: wrap;
+      padding: 0.3rem 0;
+      border-bottom: 1px dashed rgba(60, 100, 130, 0.1);
+    }
+
+    .project-item:last-child {
+      border-bottom: none;
+    }
+
+    .project-name {
+      font-weight: 600;
+      color: #1f4b63;
+      font-size: 1rem;
+    }
+
+    .project-desc {
+      color: #2b4f66;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .project-link {
+      margin-left: auto;
+      font-size: 0.85rem;
+      background: rgba(40, 100, 140, 0.06);
+      padding: 0.1rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid rgba(60, 130, 170, 0.1);
+      transition: 0.15s;
+      white-space: nowrap;
+    }
+
+    .project-link a {
+      color: #1f5a7a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .project-link a:hover {
+      color: #04364e;
+      text-decoration: underline;
+    }
+
+    /* ----- 联系区域 (社交链接) ----- */
+    .contact-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem 2rem;
+      margin-top: 0.5rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(60, 110, 150, 0.1);
+    }
+
+    .contact-label {
+      font-weight: 500;
+      color: #1d3a4e;
+      letter-spacing: 0.02em;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem 1.2rem;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem 0.6rem;
+      background: rgba(255, 255, 255, 0.5);
+      padding: 0.4rem 1rem 0.4rem 0.9rem;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: 0.2s ease;
+      color: #1b3b50;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+    }
+
+    .social-btn:hover {
+      background: rgba(255, 255, 255, 0.85);
+      border-color: #9fc6db;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(30, 70, 100, 0.08);
+    }
+
+    .social-btn .icon-emoji {
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    /* 小屏优化 */
+    @media (max-width: 460px) {
+      .contact-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+      .social-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 0.6rem;
+      }
+      .social-btn {
+        padding: 0.3rem 0.9rem 0.3rem 0.7rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* 页脚微交互：纯JS 动态问候 (示例) */
+    .footer-note {
+      margin-top: 1.8rem;
+      text-align: right;
+      font-size: 0.8rem;
+      color: #4d728a;
+      opacity: 0.7;
+      border-top: 1px solid rgba(120, 170, 200, 0.1);
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.2rem 1rem;
+    }
+
+    #greeting-message {
+      font-weight: 400;
+      background: rgba(40, 90, 120, 0.03);
+      padding: 0 0.2rem;
+      border-radius: 20px;
+      transition: 0.2s;
+      color: #1b4d69;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card" role="main" aria-label="个人介绍卡片">
+
+    <!-- 头部：头像 & 名称 -->
+    <header class="profile-header">
+      <div class="avatar" aria-label="头像">
+        <span>👩‍💻</span>
+      </div>
+      <div class="title-group">
+        <h1>林若溪</h1>
+        <div class="tagline">✨ 全栈 · 创意开发者</div>
+      </div>
+    </header>
+
+    <!-- 简介：一段有温度的文字 -->
+    <section class="bio" aria-label="个人简介">
+      <p>
+        <strong>🌱 你好！</strong> 我是若溪，一名热爱 <strong>设计感</strong> 与 <strong>代码逻辑</strong> 的开发者。
+        擅长将想法转化为优雅、可用的 web 体验。相信技术与人文的结合，能让数字世界更温暖。
+        目前专注于 <strong>交互设计</strong> 与 <strong>前端工程化</strong>，并持续探索 AI 辅助创作。
+      </p>
+    </section>
+
+    <!-- 两列：技能 + 项目 -->
+    <div class="grid-2col">
+      <!-- 技能模块 -->
+      <section class="info-module" aria-label="技能列表">
+        <h2>🧰 技能树</h2>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML5 & CSS3</span>
+          <span class="skill-tag">JavaScript (ES6+)</span>
+          <span class="skill-tag">React & Vue</span>
+          <span class="skill-tag">Node.js / Express</span>
+          <span class="skill-tag">Python (Flask)</span>
+          <span class="skill-tag">UI/UX 设计</span>
+          <span class="skill-tag">Git & CI/CD</span>
+          <span class="skill-tag">RESTful API</span>
+          <span class="skill-tag">SQL / MongoDB</span>
+        </div>
+      </section>
+
+      <!-- 项目模块 -->
+      <section class="info-module" aria-label="个人项目">
+        <h2>📁 近期项目</h2>
+        <div class="project-list">
+          <div class="project-item">
+            <span class="project-name">🌿 知味</span>
+            <span class="project-desc">食谱共享 & 社区</span>
+            <span class="project-link"><a href="#" aria-label="知味项目链接（示例）">🔗 预览</a></span>
+          </div>
+          <div class="project-item">
+            <span class="project-name">📊 小数据板</span>
+            <span class="project-desc">实时仪表盘 demo</span>
+            <span class="project-link"><a href="#" aria-label="小数据板项目链接（示例）">🔗 预览</a></span>
+          </div>
+          <div class="project-item">
+            <span class="project-name">🎨 色感训练</span>
+            <span class="project-desc">色彩搭配小游戏</span>
+            <span class="project-link"><a href="#" aria-label="色感训练项目链接（示例）">🔗 预览</a></span>
+          </div>
+          <div class="project-item">
+            <span class="project-name">📝 微日记</span>
+            <span class="project-desc">极简笔记 PWA</span>
+            <span class="project-link"><a href="#" aria-label="微日记项目链接（示例）">🔗 预览</a></span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 联系 / 社交区域 -->
+    <div class="contact-section">
+      <span class="contact-label">📬 保持联系</span>
+      <div class="social-links">
+        <a href="#" class="social-btn" aria-label="GitHub">
+          <span class="icon-emoji">🐙</span> GitHub
+        </a>
+        <a href="#" class="social-btn" aria-label="Twitter / X">
+          <span class="icon-emoji">🐦</span> Twitter
+        </a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">
+          <span class="icon-emoji">🔗</span> LinkedIn
+        </a>
+        <a href="#" class="social-btn" aria-label="Email">
+          <span class="icon-emoji">✉️</span> 邮件
+        </a>
+      </div>
+    </div>
+
+    <!-- 页脚 + 动态问候（JS 交互） -->
+    <footer class="footer-note">
+      <span>© 2026 林若溪 · 用 ❤️ 构建</span>
+      <span id="greeting-message">👋 欢迎光临</span>
+    </footer>
+  </div>
+
+  <!-- 纯 JavaScript：根据时间显示问候语，增强交互感 -->
+  <script>
+    (function() {
+      // 获取用于显示问候的元素
+      const greetingEl = document.getElementById('greeting-message');
+      if (!greetingEl) return;
+
+      // 获取当前小时 (0-23)
+      const hour = new Date().getHours();
+      let greeting = '';
+
+      // 根据时间段设置不同问候
+      if (hour >= 5 && hour < 11) {
+        greeting = '🌤️ 早上好，新的一天！';
+      } else if (hour >= 11 && hour < 14) {
+        greeting = '☀️ 午安，记得吃午餐哦！';
+      } else if (hour >= 14 && hour < 18) {
+        greeting = '🌇 下午好，继续加油～';
+      } else if (hour >= 18 && hour < 22) {
+        greeting = '🌆 傍晚好，放松一下吧！';
+      } else {
+        greeting = '🌙 夜深了，好梦 ✨';
+      }
+
+      // 更新问候语 (保留一些俏皮感)
+      greetingEl.textContent = greeting + ' · 欢迎来到我的小站';
+
+      // 可选: 点击卡片时显示额外反馈 (纯趣味)
+      const card = document.querySelector('.profile-card');
+      if (card) {
+        card.addEventListener('click', function(e) {
+          // 如果点击的是链接或按钮，不干扰
+          if (e.target.closest('a') || e.target.closest('.social-btn') || e.target.closest('.project-link')) {
+            return;
+          }
+          // 轻反馈：改变问候语瞬间
+          const original = greetingEl.textContent;
+          greetingEl.textContent = '✨ 谢谢你的关注！';
+          setTimeout(() => {
+            greetingEl.textContent = original;
+          }, 1200);
+        });
+      }
+
+      // 控制台彩蛋
+      console.log('%c🎨 林若溪 · 个人介绍页面', 'font-size:16px; font-weight:bold; color:#1f4b63;');
+      console.log('%c💡 欢迎查看源码，一起交流！', 'font-size:13px; color:#3f7890;');
+    })();
+  </script>
+</body>
+</html>
