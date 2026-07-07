@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>客户咨询</title>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                     "PingFang SC", sans-serif;
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    input, textarea {
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    textarea {
+        height: 120px;
+        resize: none;
+    }
+
+    button {
+        padding: 12px;
+        background: #222;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    #result {
+        margin-top:20px;
+        text-align:center;
+    }
+</style>
+
+</head>
+
+
+<body>
+
+
+<h1>
+    摄影咨询
+</h1>
+
+
+<form id="contactForm">
+
+
+<input 
+    id="name"
+    placeholder="姓名"
+    required
+>
+
+
+<input 
+    id="phone"
+    placeholder="联系电话"
+    required
+>
+
+
+<textarea
+    id="message"
+    placeholder="请输入您的需求">
+</textarea>
+
+
+<button type="submit">
+提交咨询
+</button>
+
+
+</form>
+
+
+<div id="result"></div>
+
+
+
+<script>
+
+const form = document.getElementById("contactForm");
+
+
+const result = document.getElementById("result");
+
+
+
+form.addEventListener( "submit", async function(e){
+
+    e.preventDefault();
+
+
+    result.innerText="提交中...";
+
+
+    const data={
+
+        name: document.getElementById("name").value,
+
+
+        phone: document.getElementById("phone").value,
+
+
+        message: document.getElementById("message").value
+
+    };
+
+
+
+    try{
+
+
+        const response =
+        await fetch(
+            "https://workers002.ccwu.cc/api/send-email",
+            {
+
+                method:"POST",
+
+                headers:{
+                    "Content-Type":
+                    "application/json"
+                },
+
+
+                body:
+                JSON.stringify(data)
+
+            }
+        );
+
+
+
+        const json =
+        await response.json();
+
+
+
+        if(json.success){
+
+            result.innerText =
+            "提交成功，我们会尽快联系您";
+
+            form.reset();
+
+        }else{
+
+            result.innerText =
+            "提交失败";
+
+        }
+
+
+
+    }catch(error){
+
+        console.error(error);
+
+        result.innerText =
+        "网络错误，请稍后再试";
+
+    }
+
+
+
+});
+
+
+</script>
+
+
+</body>
+</html>
