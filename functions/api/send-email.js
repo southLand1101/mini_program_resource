@@ -1,6 +1,6 @@
 export async function onRequestPost(context) {
 
-    const apiKey = "re_WFaA4oTi_6bPPawkwRdynUoNoJWu4JQGX";
+    const apiKey = "re_B9vTQqLn_CcCXn579NyRWwkMAMeZHmTfg";
 
     console.log("key length:", apiKey.length);
     console.log("key start:", apiKey.substring(0, 8));
