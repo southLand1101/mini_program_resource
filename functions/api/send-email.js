@@ -9,7 +9,7 @@ export async function onRequestPost(context) {
             phone,
             message
         } = body;
-
+        console.log("API KEY:", context.env.RESEND_API_KEY);
         // 调用 Resend 发送邮件
         const response = await fetch(
             "https://api.resend.com/emails",
@@ -18,13 +18,8 @@ export async function onRequestPost(context) {
                 method: "POST",
 
                 headers: {
-
-                    "Authorization":
-                    `Bearer ${context.env.RESEND_API_KEY}`,
-
-                    "Content-Type":
-                    "application/json"
-
+                    "Authorization": `Bearer ${context.env.RESEND_API_KEY}`,
+                    "Content-Type": "application/json"
                 },
 
 
