@@ -18,7 +18,7 @@ export async function onRequestPost(context) {
                 method: "POST",
 
                 headers: {
-                    "Authorization": `Bearer ${context.env.RESEND_API_KEY}`,
+                    "Authorization": `Bearer re_WFaA4oTi_6bPPawkwRdynUoNoJWu4JQGX`,
                     "Content-Type": "application/json"
                 },
 
