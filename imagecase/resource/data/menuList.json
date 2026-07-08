@@ -6,22 +6,7 @@
     },
     {
         "title":"细节打磨",
-        "icon":"",
-        "content":"/resource/details/detail_02/page.html"
-    },
-    {
-        "title":"情绪传达",
-        "icon":"",
-        "content":"/resource/details/detail_02/page.html"
-    },
-    {
-        "title":"细节打磨",
-        "icon":"",
-        "content":"/resource/details/detail_02/page.html"
-    },
-    {
-        "title":"场景关系",
-        "icon":"",
+        "icon":"/resource/details/detail_02/icon.svg",
         "content":"/resource/details/detail_02/page.html"
     }
 ]
