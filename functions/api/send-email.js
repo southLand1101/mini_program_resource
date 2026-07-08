@@ -12,21 +12,29 @@ export async function onRequestPost(context) {
 
         // 调用 Resend 发送邮件
         const response = await fetch(
-            "https://api.mailjet.com/v3.1/send",
+            "https://api.resend.com/emails",
             {
                 method: "POST",
-                headers:{
-                    "Content-Type":"application/json",
-                    "Authorization": "Basic " + btoa(env.MJ_API_KEY + ":" + env.MJ_SECRET_KEY)
+                headers: {
+
+                    "Authorization": `Bearer ${context.env.RESEND_API_KEY}`,
+                    "Content-Type": "application/json"
                 },
+
+
                 body: JSON.stringify({
-                    from:"yanpeng19971101@gmail.com",
+
+                    // 发件地址
+                    // 测试阶段可以使用 Resend 提供的地址
+                    from:"onboarding@resend.dev",
+                    // 你的接收邮箱
                     to:[
                         "south_land@sina.com"
                     ],
 
 
-                    subject:"收到新的摄影咨询",
+                    subject:
+                    "收到新的摄影咨询",
 
 
                     html:
