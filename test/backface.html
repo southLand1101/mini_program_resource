@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>数据管理</title>
+</head>
+<body>
+  <h2>数据管理</h2>
+
+  <input id="keyword" placeholder="搜索姓名/联系方式" />
+  <input id="date" type="date" />
+  <button onclick="load()">查询</button>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>称谓</th>
+        <th>联系方式</th>
+        <th>日期</th>
+        <th>备注</th>
+        <th>创建时间</th>
+      </tr>
+    </thead>
+    <tbody id="list"></tbody>
+  </table>
+
+  <script>
+    async function load() {
+      const keyword = document.getElementById("keyword").value;
+      const date = document.getElementById("date").value;
+
+      const url = new URL("https://young-poetry-83ff.south-land.workers.dev/api/list");
+      if (keyword) url.searchParams.set("keyword", keyword);
+      if (date) url.searchParams.set("date", date);
+
+      const res = await fetch(url);
+      const data = await res.json();
+
+      const tbody = document.getElementById("list");
+      tbody.innerHTML = "";
+
+      data.forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${item.id}</td>
+          <td>${item.name}</td>
+          <td>${item.contact}</td>
+          <td>${item.date}</td>
+          <td>${item.note}</td>
+          <td>${new Date(item.created_at).toLocaleString()}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    load();
+  </script>
+
+</body>
+</html>

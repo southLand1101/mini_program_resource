@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>提交信息</title>
+</head>
+<body>
+  <h2>信息提交</h2>
+
+  <form id="form">
+    <div>
+      <label>称谓：</label>
+      <input name="name" required />
+    </div>
+
+```
+<div>
+  <label>联系方式：</label>
+  <input name="contact" required />
+</div>
+
+<div>
+  <label>日期：</label>
+  <input type="date" name="date" />
+</div>
+
+<div>
+  <label>备注：</label>
+  <textarea name="note"></textarea>
+</div>
+
+<button type="submit">提交</button>
+```
+
+  </form>
+
+  <script>
+    document.getElementById("form").onsubmit = async (e) => {
+      e.preventDefault();
+
+      const form = new FormData(e.target);
+
+      const data = {
+        name: form.get("name"),
+        contact: form.get("contact"),
+        date: form.get("date"),
+        note: form.get("note")
+      };
+
+      const res = await fetch("https://young-poetry-83ff.south-land.workers.dev/api/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      alert("提交成功");
+      e.target.reset();
+    };
+  </script>
+
+</body>
+</html>
