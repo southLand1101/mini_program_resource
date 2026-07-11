@@ -3,59 +3,6 @@
     "title":"婚礼!!",
     "subtitle":"",
     "date":"2026年05月02日",
-    "cover":"/resource/cases/case01/cover.svg",
-    "backgorund":"",
-    "imageList":[
-      {
-        "left": "/resource/cases/case01/cover.svg",
-        "right": "/resource/cases/case01/P001.jpg"
-      },
-      {
-        "left": "/resource/cases/case01/P002.jpg",
-        "right": "/resource/cases/case01/P003.jpg"
-      },
-      {
-        "left": "/resource/cases/case01/P004.jpg",
-        "right": "/resource/cases/case01/P005.jpg"
-      },
-      {
-        "left": "/resource/cases/case01/P006.jpg",
-        "right": "/resource/cases/case01/P007.jpg"
-      },
-      {
-        "left": "/resource/cases/case01/P008.jpg",
-        "right": "/resource/cases/case01/P009.jpg"
-      },
-      {
-        "left": "/resource/cases/case01/P010.jpg",
-        "right": "/resource/cases/case01/P011.jpg"
-      },
-      {
-        "left": "/resource/cases/case01/P012.jpg",
-        "right": "/resource/cases/case01/P013.jpg"
-      },
-      {
-        "left": "/resource/cases/case01/P014.jpg",
-        "right": "/resource/cases/case01/P015.jpg"
-      },
-      {
-        "left": "/resource/cases/case01/P016.jpg",
-        "right": "/resource/cases/case01/P017.jpg"
-      },
-      {
-        "left": "/resource/cases/case01/P018.jpg",
-        "right": "/resource/cases/case01/P019.jpg"
-      },
-      {
-        "left": "/resource/cases/case01/P020.jpg",
-        "right": "/resource/cases/case01/back_cover.svg"
-      }
-    ]
-  },
-  {
-    "title":"婚礼!!",
-    "subtitle":"",
-    "date":"2026年05月02日",
     "cover":"/resource/cases/case02/cover.jpg",
     "backgorund":"",
     "imageList":[
@@ -105,11 +52,44 @@
       },
       {
         "left": "/resource/cases/case02/P022.jpg",
-        "right": "/resource/cases/case02/P023.jpg"
+        "right": "/resource/cases/case02/back_cover.jpg"
+      }
+    ]
+  },
+  {
+    "title":"婚礼!!",
+    "subtitle":"",
+    "date":"2026年05月02日",
+    "cover":"/resource/cases/case03/cover.jpg",
+    "backgorund":"",
+    "imageList":[
+      {
+        "left": "/resource/cases/case03/cover.jpg",
+        "right": "/resource/cases/case03/P001.jpg"
       },
       {
-        "left": "/resource/cases/case02/P024.jpg",
-        "right": "/resource/cases/case02/back_cover.jpg"
+        "left": "/resource/cases/case03/P002.jpg",
+        "right": "/resource/cases/case03/P003.jpg"
+      },
+      {
+        "left": "/resource/cases/case03/P004.jpg",
+        "right": "/resource/cases/case03/P005.jpg"
+      },
+      {
+        "left": "/resource/cases/case03/P006.jpg",
+        "right": "/resource/cases/case03/P007.jpg"
+      },
+      {
+        "left": "/resource/cases/case03/P008.jpg",
+        "right": "/resource/cases/case03/P009.jpg"
+      },
+      {
+        "left": "/resource/cases/case03/P010.jpg",
+        "right": "/resource/cases/case03/P011.jpg"
+      },
+      {
+        "left": "/resource/cases/case03/P012.jpg",
+        "right": "/resource/cases/case03/back_cover.jpg"
       }
     ]
   }
