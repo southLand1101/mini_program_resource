@@ -3,89 +3,18 @@
         "title":"风格叙事",
         "icon":"/resource/details/detail_01/icon.svg",
         "pageStye":1,
-        "info":{
-            "title":"STYLE NARRATIVE",
-            "subtitle":"风格叙事",
-            "lists":[
-                {
-                    "name":"复古胶片 / Film Tone",
-                    "image":"/resource/details/detail_01/demo.jpg",
-		            "desc": "模拟颗粒质感与青中带绿的暗部。故意降低高光纯度，让色彩带上时间的沉淀感。不追求绝对的清晰，而追求故事的呼吸感。"
-                },
-                {
-                    "name":"通透纯净 / Clean Clear",
-                    "image":"/resource/details/detail_01/demo.jpg",
-		            "desc": "校正皮肤杂色，提高光影的清透度。重点在于去黄去噪，让皮肤呈现剥壳鸡蛋般的自然光泽，像清晨拂面的一阵凉风。"
-                },
-                {
-                    "name":"盛夏意象 / High Saturation",
-                    "image":"/resource/details/detail_01/demo.jpg",
-		            "desc": "高饱和并不意味着廉价。精准提取并放大主体色彩，同时压暗背景，制造强烈的视觉冲击与情绪张力。"
-                }
-            ]
-        }
+        "content":"/resource/details/detail_01/index.json"
     },
     {
         "title":"细节打磨",
         "icon":"/resource/details/detail_02/icon.svg",
         "pageStye":2,
-        "info":{
-            "title":"FINELY BRUSHED",
-            "subtitle":"细节打磨",
-            "lists":[
-                {
-                    "title":"真实多一点",
-		            "tag":"保留瑕疵的生命力",
-                    "images":[
-                        {
-                            "label":"Raw / 原图",
-                            "src":"/resource/details/detail_02/demo.jpg"
-                        },
-                        {
-                            "label":"Retouched / 克制修饰",
-                            "src":"/resource/details/detail_02/demo.jpg"
-                        }
-                    ],
-		            "desc": "思路：仅做平滑光影处理。保留自然的皮肤纹理、小雀斑甚至眼周细纹。修图的最高境界是“看似没修，但变得更有质感”。"
-                },
-                {
-                    "title":"美貌多一点",
-                    "tag":"极致的细节构建",
-                    "images":[
-                        {
-                            "label":"Raw / 原图",
-                            "src":"/resource/details/detail_02/demo.jpg"
-                        },
-                        {
-                            "label":"Retouched / 精致重塑",
-                            "src":"/resource/details/detail_02/demo.jpg"
-                        }
-                    ],
-                    "desc":"思路：根据三庭五眼对轮廓进行微调，高级骨相重塑。在保持辨识度的前提下，提高精致度，让面部更加流畅，五官更加立体。"
-                },
-                {
-                    "title":"光影质感",
-                    "tag":"细腻的光影重塑",
-                    "images":[
-                        {
-                            "label":"Raw / 原图",
-                            "src":"/resource/details/detail_02/demo.jpg"
-                        },
-                        {
-                            "label":"Retouched / 光影重塑",
-                            "src":"/resource/details/detail_02/demo.jpg"
-                        }
-                    ],
-                    "desc":"思路：在保留原生辨识度的前提下，以高光提亮视觉重心，用阴影收拢轮廓边缘。保持光的逻辑自洽——哪里来光，哪里就该亮。这不是简单修饰，而是在浪漫光影与真实世界之间寻找平衡。"
-
-                }
-            ]
-        }
+        "content":"/resource/details/detail_02/index.json"
     },
     {
-        "title":"联系我们",
-        "icon":"",
-        "pageStye":9,
-        "content":"/resource/details/detail_02/page.html"
+        "title":"嘉礼喜事",
+        "icon":"/resource/details/detail_02/icon.svg",
+        "pageStye":2,
+        "content":"/resource/details/detail_03/index.json"
     }
 ]
