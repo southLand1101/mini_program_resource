@@ -4,12 +4,12 @@
     "list":[
         {
             "name":"复古胶片 / Film Tone",
-            "image":"/resource/details/detail_01/demo.jpg",
+            "image":"/resource/details/detail_01/img_03.jpg",
             "desc": "模拟颗粒质感与青中带绿的暗部。故意降低高光纯度，让色彩带上时间的沉淀感。不追求绝对的清晰，而追求故事的呼吸感。"
         },
         {
             "name":"通透纯净 / Clean Clear",
-            "image":"/resource/details/detail_01/demo.jpg",
+            "image":"/resource/details/detail_01/img_02.jpg",
             "desc": "校正皮肤杂色，提高光影的清透度。重点在于去黄去噪，让皮肤呈现剥壳鸡蛋般的自然光泽，像清晨拂面的一阵凉风。"
         },
         {

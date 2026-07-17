@@ -8,11 +8,11 @@
             "images":[
                 {
                     "label":"Raw / 原图",
-                    "src":"/resource/details/detail_02/demo.jpg"
+                    "src":"/resource/details/detail_02/img_03.jpg"
                 },
                 {
                     "label":"Retouched / 克制修饰",
-                    "src":"/resource/details/detail_02/demo.jpg"
+                    "src":"/resource/details/detail_02/img_04.jpg"
                 }
             ],
             "desc": "思路：仅做平滑光影处理。保留自然的皮肤纹理、小雀斑甚至眼周细纹。修图的最高境界是“看似没修，但变得更有质感”。"
@@ -23,11 +23,11 @@
             "images":[
                 {
                     "label":"Raw / 原图",
-                    "src":"/resource/details/detail_02/demo.jpg"
+                    "src":"/resource/details/detail_02/img_05.jpg"
                 },
                 {
                     "label":"Retouched / 精致重塑",
-                    "src":"/resource/details/detail_02/demo.jpg"
+                    "src":"/resource/details/detail_02/img_06.jpg"
                 }
             ],
             "desc":"思路：根据三庭五眼对轮廓进行微调，高级骨相重塑。在保持辨识度的前提下，提高精致度，让面部更加流畅，五官更加立体。"
