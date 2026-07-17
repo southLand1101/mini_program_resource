@@ -5,14 +5,17 @@
         {
             "title":"真实多一点",
             "tag":"保留瑕疵的生命力",
+            "style":"width",
             "images":[
                 {
-                    "label":"Raw / 原图",
-                    "src":"/resource/details/detail_02/img_03.jpg"
+                    "label":"Raw/原图",
+                    "src":"/resource/details/detail_02/01_reduce.jpg",
+                    "detail":"/resource/details/detail_02/01_intact.jpg"
                 },
                 {
-                    "label":"Retouched / 克制修饰",
-                    "src":"/resource/details/detail_02/img_04.jpg"
+                    "label":"Retouched/克制修饰",
+                    "src":"/resource/details/detail_02/02_reduce.jpg",
+                    "detail":"/resource/details/detail_02/02_intact.jpg"
                 }
             ],
             "desc": "思路：仅做平滑光影处理。保留自然的皮肤纹理、小雀斑甚至眼周细纹。修图的最高境界是“看似没修，但变得更有质感”。"
@@ -20,14 +23,17 @@
         {
             "title":"美貌多一点",
             "tag":"极致的细节构建",
+            "style":"height",
             "images":[
                 {
                     "label":"Raw / 原图",
-                    "src":"/resource/details/detail_02/img_05.jpg"
+                    "src":"/resource/details/detail_02/03_reduce.jpg",
+                    "detail":"/resource/details/detail_02/03_intact.jpg"
                 },
                 {
                     "label":"Retouched / 精致重塑",
-                    "src":"/resource/details/detail_02/img_06.jpg"
+                    "src":"/resource/details/detail_02/04_reduce.jpg",
+                    "detail":"/resource/details/detail_02/04_intact.jpg"
                 }
             ],
             "desc":"思路：根据三庭五眼对轮廓进行微调，高级骨相重塑。在保持辨识度的前提下，提高精致度，让面部更加流畅，五官更加立体。"
@@ -35,14 +41,17 @@
         {
             "title":"光影质感",
             "tag":"细腻的光影重塑",
+            "style":"height",
             "images":[
                 {
                     "label":"Raw / 原图",
-                    "src":"/resource/details/detail_02/img_01.jpg"
+                    "src":"/resource/details/detail_02/05_reduce.jpg",
+                    "detail":"/resource/details/detail_02/05_intact.jpg"
                 },
                 {
                     "label":"Retouched / 光影重塑",
-                    "src":"/resource/details/detail_02/img_02.jpg"
+                    "src":"/resource/details/detail_02/06_reduce.jpg",
+                    "detail":"/resource/details/detail_02/06_intact.jpg"
                 }
             ],
             "desc":"思路：在保留原生辨识度的前提下，以高光提亮视觉重心，用阴影收拢轮廓边缘。保持光的逻辑自洽——哪里来光，哪里就该亮。这不是简单修饰，而是在浪漫光影与真实世界之间寻找平衡。"
