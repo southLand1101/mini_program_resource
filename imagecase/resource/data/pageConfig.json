@@ -32,6 +32,10 @@
       },
       {
         "left": "/resource/cases/case02/P022.jpg",
+        "right": "/resource/cases/case02/P023.jpg"
+      },
+      {
+        "left": "/resource/cases/case02/P024.jpg",
         "right": "/resource/cases/case02/back_cover.jpg"
       }
     ]
