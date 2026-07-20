@@ -35,6 +35,43 @@
   {
     "title":"婚礼!!",
     "subtitle":"",
+    "date":"2025年3月12日",
+    "cover":"/resource/cases/case06/cover.jpg",
+    "backgorund":"",
+    "imageList":[
+      {
+        "left": "/resource/cases/case06/cover.jpg",
+        "right": "/resource/cases/case06/P001.jpg"
+      },
+      {
+        "left": "/resource/cases/case06/P002.jpg",
+        "right": "/resource/cases/case06/P003.jpg"
+      },
+      {
+        "left": "/resource/cases/case06/P004.jpg",
+        "right": "/resource/cases/case06/P005.jpg"
+      },
+      {
+        "left": "/resource/cases/case06/P006.jpg",
+        "right": "/resource/cases/case06/P007.jpg"
+      },
+      {
+        "left": "/resource/cases/case06/P008.jpg",
+        "right": "/resource/cases/case06/P009.jpg"
+      },
+      {
+        "left": "/resource/cases/case06/P010.jpg",
+        "right": "/resource/cases/case06/P011.jpg"
+      },
+      {
+        "left": "/resource/cases/case06/P012.jpg",
+        "right": "/resource/cases/case06/back_cover.jpg"
+      }
+    ]
+  },
+  {
+    "title":"婚礼!!",
+    "subtitle":"",
     "date":"2025年5月4日",
     "cover":"/resource/cases/case04/cover.jpg",
     "backgorund":"",
