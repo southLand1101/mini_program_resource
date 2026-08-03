@@ -12,14 +12,30 @@
       },
       {
         "left": "/resource/cases/case07/P002.jpg",
+        "right": "/resource/cases/case07/P003.jpg"
+      },
+      {
+        "left": "/resource/cases/case07/P004.jpg",
+        "right": "/resource/cases/case07/P005.jpg"
+      },
+      {
+        "left": "/resource/cases/case07/P006.jpg",
         "right": "/resource/cases/case07/P007.jpg"
       },
       {
         "left": "/resource/cases/case07/P008.jpg",
+        "right": "/resource/cases/case07/P009.jpg"
+      },
+      {
+        "left": "/resource/cases/case07/P010.jpg",
         "right": "/resource/cases/case07/P011.jpg"
       },
       {
         "left": "/resource/cases/case07/P012.jpg",
+        "right": "/resource/cases/case07/P013.jpg"
+      },
+      {
+        "left": "/resource/cases/case07/P014.jpg",
         "right": "/resource/cases/case07/P015.jpg"
       },
       {
@@ -28,6 +44,10 @@
       },
       {
         "left": "/resource/cases/case07/P018.jpg",
+        "right": "/resource/cases/case07/P019.jpg"
+      },
+      {
+        "left": "/resource/cases/case07/P020.jpg",
         "right": "/resource/cases/case07/P021.jpg"
       },
       {
